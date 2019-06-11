@@ -63,9 +63,13 @@ def create_fake_dgfDecisionID():
 
 
 def create_fake_tenderAttempts(attempt):
-    number = [1,2,3,4,5,6,7,8]
-    number.remove(attempt)
-    return  random.choice(number)
+    if attempt == 1:
+        return random.choice([2, 3, 4])
+    else:
+        return 1
+    # number = [1,2,3,4]
+    # # number.remove(attempt)
+    # return  random.choice(number)
 
 
 def create_fake_amount():
@@ -77,9 +81,11 @@ def create_fake_minimal_step(value_amount):
 
 
 def create_fake_guarantee(value_amount):
-    guarantee = round(0.1 * value_amount, 2)
+    return round(random.uniform(0.02, 0.1) * value_amount, 2)
+    # guarantee = round(0.1 * value_amount, 2)
     # Required guarantee deposit must not be greater than 500 000 UAH
-    return guarantee if guarantee <= 500000 else 500000
+    # return guarantee if guarantee <= 500000 else 500000
+    # return guarantee
 
 
 def create_fake_cancellation_reason():
@@ -311,7 +317,7 @@ def test_tender_data_dgf_other(params, submissionMethodDetails):
     data['dgfID'] = fake.dgfID()
     data['dgfDecisionID'] = fake.dgfDecisionID()
     data['dgfDecisionDate'] =  (get_now() + timedelta(days=-2)).strftime('%Y-%m-%d')
-    data['tenderAttempts'] =  fake.random_int(min=1, max=8)
+    data['tenderAttempts'] =  fake.random_int(min=1, max=4)
     del data["procuringEntity"]
 
     for i in range(params['number_of_items']):
@@ -348,7 +354,7 @@ def test_tender_data_dgf_financial(params, submissionMethodDetails):
     data['dgfID'] = fake.dgfID()
     data['dgfDecisionID'] = fake.dgfDecisionID()
     data['dgfDecisionDate'] = (get_now() + timedelta(days=-2)).strftime('%Y-%m-%d')
-    data['tenderAttempts'] = fake.random_int(min=1, max=8)
+    data['tenderAttempts'] = fake.random_int(min=1, max=4)
 
     del data["procuringEntity"]
 
@@ -385,7 +391,7 @@ def test_tender_data_dgf_insider(params, submissionMethodDetails):
     data['dgfID'] = fake.dgfID()
     data['dgfDecisionID'] = fake.dgfDecisionID()
     data['dgfDecisionDate'] = (get_now() + timedelta(days=-2)).strftime('%Y-%m-%d')
-    data['tenderAttempts'] = fake.random_int(min=1, max=8)
+    data['tenderAttempts'] = fake.random_int(min=1, max=4)
     data['auctionParameters'] = {
             'type': 'insider',
             'dutchSteps': random.choice([random.randrange(10, 90, 10), 99, 100])

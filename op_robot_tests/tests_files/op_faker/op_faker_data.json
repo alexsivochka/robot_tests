@@ -3008,39 +3008,11 @@
         }
     ],
     "classifications_other":[
-        {
-           "classification": {
-               "scheme": "CAV",
-               "id": "04000000-8",
-               "description": "Нерухоме майно"
-            }
-       },
        {
            "classification": {
                "scheme": "CAV",
                "id": "04111000-9",
-               "description": "Квартира в будинку малоповерхового житлового будівництва"
-            }
-       },
-       {
-           "classification": {
-               "scheme": "CAV",
-               "id": "04111100-0",
                "description": "Квартира"
-            }
-       },
-       {
-           "classification": {
-               "scheme": "CAV",
-               "id": "04111200-1",
-               "description": "Таунхаус"
-            }
-       },
-       {
-           "classification": {
-               "scheme": "CAV",
-               "id": "30100000-0",
-               "description": "Офісні техніка, устаткування та приладдя, крім комп’ютерів, принтерів та меблів"
             }
        },
        {
@@ -3048,13 +3020,6 @@
                "scheme": "CAV",
                "id": "30123200-9",
                "description": "Банкомати"
-            }
-       },
-       {
-           "classification": {
-               "scheme": "CAV",
-               "id": "39700000-9",
-               "description": "Побутова техніка"
             }
        },
         {
@@ -3185,14 +3150,9 @@
         }
     ],
     "cavs_other": [
-        "04000000-8",
         "04111000-9",
-        "04111100-0",
-        "04111200-1",
-        "30100000-0",
         "30123200-9",
-        "39714110-4",
-        "39700000-9"
+        "39714110-4"
     ],
     "cavs_financial": [
         "07100000-0",
@@ -3202,62 +3162,18 @@
         "07223000-8"
     ],
     "items_base_data_other": [
-           {
-            "cav_id": "04000000-8",
-            "description": "Нерухоме майно",
-            "description_ru": "Недвижимое имущество",
-            "description_en": "Real estate",
-            "quantity": 50,
-            "unit": {
-                "code": "MTK",
-                "name": "метри квадратні"
-            }
-        },
         {
             "cav_id": "04111000-9",
-            "description": "Квартира в будинку малоповерхового житлового будівництва",
-            "description_ru": "Квартира в доме малоэтажного строительства",
-            "description_en": "Flat in low-rise building",
-            "quantity": 15,
-            "unit": {
-                "code": "H87",
-                "name": "штуки"
-            }
-        },
-        {
-            "cav_id": "04111100-0",
             "description": "Квартира",
             "description_ru": "Квартира",
             "description_en": "Flat",
-            "quantity": 12,
-            "unit": {
-                "code": "H87",
-                "name": "штуки"
-            }
-        },
-        {
-            "cav_id": "04111200-1",
-            "description": "Таунхаус",
-            "description_ru": "Таунхаус",
-            "description_en": "Townhouse",
-            "quantity": 10,
-            "unit": {
-                "code": "H87",
-                "name": "штуки"
-            }
-        },
-        {
-            "cav_id": "30100000-0",
-            "description": "Офісні техніка, устаткування та приладдя, крім комп’ютерів, принтерів та меблів",
-            "description_ru": "Office techniccs besides computers, printers and futniture",
-            "description_en": "Офисная техника кроме компютеров, принтеров и мебели",
             "quantity": 15,
             "unit": {
                 "code": "H87",
                 "name": "штуки"
             }
         },
-                {
+        {
             "cav_id": "30123200-9",
             "description": "Банкомати",
             "description_ru": "Банкоматы",
@@ -3268,18 +3184,7 @@
                 "name": "штуки"
             }
         },
-            {
-            "cav_id": "39700000-9",
-            "description": "Побутова техніка",
-            "description_ru": "Бытовая техника",
-            "description_en": "Household technics",
-            "quantity": 22,
-            "unit": {
-                "code": "H87",
-                "name": "штуки"
-            }
-        },
-                   {
+        {
             "cav_id": "39714110-4",
             "description": "Витяжні вентилятори",
             "description_ru": "Вытяжные вентиляторы",
