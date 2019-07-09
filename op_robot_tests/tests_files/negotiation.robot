@@ -732,14 +732,23 @@ ${VAT_INCLUDED}     ${True}
   Звірити відображення поля contracts[0].status тендера із pending для користувача ${viewer}
 
 
+#Відображення закінчення періоду подачі скарг на пропозицію
+#  [Tags]  ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
+#  ...      tender_owner  viewer
+#  ...      ${USERS.users['${tender_owner}'].broker}  ${USERS.users['${viewer}'].broker}
+#  ...      tender_view
+#  ...      non-critical
+#  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
+#  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[0].complaintPeriod.endDate
+
+
 Відображення закінчення періоду подачі скарг на пропозицію
-  [Tags]  ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
-  ...      tender_owner  viewer
-  ...      ${USERS.users['${tender_owner}'].broker}  ${USERS.users['${viewer}'].broker}
+  [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера
+  ...      viewer
+  ...      ${USERS.users['${viewer}'].broker}
   ...      tender_view
   ...      non-critical
-  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
-  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[0].complaintPeriod.endDate
+  Звірити відображення поля awards[0].complaintPeriod.endDate тендера із ${USERS.users['${viewer}'].tender_data.data.awards[0].complaintPeriod.endDate} для користувача ${viewer}
 
 
 Можливість редагувати вартість угоди без урахування ПДВ
