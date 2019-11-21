@@ -76,11 +76,15 @@ ${PLAN_TENDER}      ${True}
   ...      contract_view
   ...      non-critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
+  #${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
   ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
   Log  ${award}
   ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
   Log  ${contract}
+  #:FOR  ${username}  IN  ${viewer}  ${tender_owner}
+  #\  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards
+  #${award_amount}=  get variable value  ${USERS.users['${username}'].tender_data.data.awards[${award_index}].value.amount}
   Log  ${award.value.amount}
   Звірити відображення поля contracts[${contract_index}].value.amountNet тендера із ${award.value.amount} для користувача ${viewer}
 
@@ -92,11 +96,15 @@ ${PLAN_TENDER}      ${True}
   ...      contract_view
   ...      non-critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
+  #${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
   ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
   Log  ${award}
   ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
   Log  ${contract}
+  #:FOR  ${username}  IN  ${viewer}  ${tender_owner}
+  #\  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards
+  #${award_amount}=  get variable value  ${USERS.users['${username}'].tender_data.data.awards[${award_index}].value.amount}
   Log  ${award.value.amount}
   Звірити відображення поля contracts[${contract_index}].value.amount тендера із ${award.value.amount} для користувача ${viewer}
 
