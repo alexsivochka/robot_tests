@@ -22,25 +22,44 @@ Suite Teardown  Test Suite Teardown
 #             CONTRACT
 ##############################################################################################
 
+#Відображення закінчення періоду подачі скарг на пропозицію
+#  [Tags]   ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
+#  ...      viewer
+#  ...      ${USERS.users['${tender_owner}'].broker}
+#  ...      contract_stand_still
+#  ...      critical
+#  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
+#  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
+#  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[${award_index}].complaintPeriod.endDate
+
 Відображення закінчення періоду подачі скарг на пропозицію
-  [Tags]   ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
+  [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера
   ...      viewer
-  ...      ${USERS.users['${tender_owner}'].broker}
+  ...      ${USERS.users['${viewer}'].broker}
   ...      contract_stand_still
-  ...      critical
-  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
-  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
-  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[${award_index}].complaintPeriod.endDate
+  ...      non-critical
+  Звірити відображення поля awards[0].complaintPeriod.endDate тендера із ${USERS.users['${viewer}'].tender_data.data.awards[0].complaintPeriod.endDate} для користувача ${viewer}
+
+
+#Дочекатися закічення stand still періоду
+#  [Tags]   ${USERS.users['${tender_owner}'].broker}: Процес укладання угоди
+#  ...      viewer
+#  ...      ${USERS.users['${tender_owner}'].broker}
+#  ...      contract_stand_still
+#  ...      critical
+#  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
+#  ${standstillEnd}=  Get Variable Value  ${USERS.users['${tender_owner}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
+#  Дочекатись дати  ${standstillEnd}
 
 
 Дочекатися закічення stand still періоду
   [Tags]   ${USERS.users['${tender_owner}'].broker}: Процес укладання угоди
-  ...      viewer
+  ...      tender_owner
   ...      ${USERS.users['${tender_owner}'].broker}
   ...      contract_stand_still
   ...      critical
   ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
-  ${standstillEnd}=  Get Variable Value  ${USERS.users['${tender_owner}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
+  ${standstillEnd}=  Get Variable Value  ${USERS.users['${viewer}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
   Дочекатись дати  ${standstillEnd}
 
 
@@ -51,12 +70,13 @@ Suite Teardown  Test Suite Teardown
   ...      contract_view
   ...      non-critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
-  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
-  ${award}=  Get From List  ${USERS.users['${viewer}'].tender_data.data.awards}  ${award_index}
-  ${award_amount}=  Get From Dictionary  ${award.value}  amount
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
-  ${amount_net_field}=  Set Variable  contracts[${contract_index}].value.amountNet
-  Звірити відображення поля ${amount_net_field} тендера із ${award_amount} для користувача ${viewer}
+  ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
+  Log  ${award}
+  ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
+  Log  ${contract}
+  Log  ${award.value.amount}
+  Звірити відображення поля contracts[${contract_index}].value.amountNet тендера із ${award.value.amount} для користувача ${viewer}
 
 
 Відображення вартості угоди
@@ -67,8 +87,12 @@ Suite Teardown  Test Suite Teardown
   ...      non-critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
-  ${amount_field}=  Set Variable  contracts[${contract_index}].value.amount
-  Отримати дані із поля ${amount_field} тендера для користувача ${viewer}
+  ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
+  Log  ${award}
+  ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
+  Log  ${contract}
+  Log  ${award.value.amount}
+  Звірити відображення поля contracts[${contract_index}].value.amount тендера із ${award.value.amount} для користувача ${viewer}
 
 
 Можливість змінити ознаку контракту на без ПДВ
@@ -110,7 +134,9 @@ Suite Teardown  Test Suite Teardown
   [Setup]  Дочекатись синхронізації з майданчиком  ${tender_owner}
   [Teardown]  Оновити LAST_MODIFICATION_DATE
   ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
+  Log  ${award}
   ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
+  Log  ${contract}
   ${amount_net}=  create_fake_amount_net  ${award.value.amount}  ${award.value.valueAddedTaxIncluded}  ${contract.value.valueAddedTaxIncluded}
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
   Set to dictionary  ${USERS.users['${tender_owner}']}  new_amount_net=${amount_net}
@@ -132,7 +158,9 @@ Suite Teardown  Test Suite Teardown
   [Setup]  Дочекатись синхронізації з майданчиком  ${tender_owner}
   [Teardown]  Оновити LAST_MODIFICATION_DATE
   ${award}=  Отримати останній элемент  awards  ${tender_owner}  ${viewer}
+  Log  ${award}
   ${contract}=  Отримати останній элемент  contracts  ${tender_owner}  ${viewer}
+  Log  ${contract}
   ${amount}=  create_fake_amount  ${award.value.amount}  ${award.value.valueAddedTaxIncluded}  ${contract.value.valueAddedTaxIncluded}
   ${contract_index}=  Отримати останній індекс  contracts  ${tender_owner}  ${viewer}
   Set to dictionary  ${USERS.users['${tender_owner}']}  new_amount=${amount}
