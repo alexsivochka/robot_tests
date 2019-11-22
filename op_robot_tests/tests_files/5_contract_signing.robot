@@ -22,45 +22,45 @@ Suite Teardown  Test Suite Teardown
 #             CONTRACT
 ##############################################################################################
 
-#Відображення закінчення періоду подачі скарг на пропозицію
-#  [Tags]   ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
-#  ...      viewer
-#  ...      ${USERS.users['${tender_owner}'].broker}
-#  ...      contract_stand_still
-#  ...      critical
-#  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
-#  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
-#  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[${award_index}].complaintPeriod.endDate
-
 Відображення закінчення періоду подачі скарг на пропозицію
-  [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера
+  [Tags]   ${USERS.users['${tender_owner}'].broker}: Відображення основних даних тендера
   ...      viewer
-  ...      ${USERS.users['${viewer}'].broker}
+  ...      ${USERS.users['${tender_owner}'].broker}
   ...      contract_stand_still
-  ...      non-critical
-  Звірити відображення поля awards[0].complaintPeriod.endDate тендера із ${USERS.users['${viewer}'].tender_data.data.awards[0].complaintPeriod.endDate} для користувача ${viewer}
+  ...      critical
+  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
+  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
+  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  awards[${award_index}].complaintPeriod.endDate
+
+#Відображення закінчення періоду подачі скарг на пропозицію
+#  [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера
+#  ...      viewer
+#  ...      ${USERS.users['${viewer}'].broker}
+#  ...      contract_stand_still
+#  ...      non-critical
+#  Звірити відображення поля awards[0].complaintPeriod.endDate тендера із ${USERS.users['${tender_owner}'].tender_data.data.awards[0].complaintPeriod.endDate} для користувача ${viewer}
+
+
+Дочекатися закічення stand still періоду
+  [Tags]   ${USERS.users['${tender_owner}'].broker}: Процес укладання угоди
+  ...      viewer
+  ...      ${USERS.users['${tender_owner}'].broker}
+  ...      contract_stand_still
+  ...      critical
+  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
+  ${standstillEnd}=  Get Variable Value  ${USERS.users['${tender_owner}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
+  Дочекатись дати  ${standstillEnd}
 
 
 #Дочекатися закічення stand still періоду
 #  [Tags]   ${USERS.users['${tender_owner}'].broker}: Процес укладання угоди
-#  ...      viewer
+#  ...      tender_owner
 #  ...      ${USERS.users['${tender_owner}'].broker}
 #  ...      contract_stand_still
 #  ...      critical
 #  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
 #  ${standstillEnd}=  Get Variable Value  ${USERS.users['${tender_owner}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
 #  Дочекатись дати  ${standstillEnd}
-
-
-Дочекатися закічення stand still періоду
-  [Tags]   ${USERS.users['${tender_owner}'].broker}: Процес укладання угоди
-  ...      tender_owner
-  ...      ${USERS.users['${tender_owner}'].broker}
-  ...      contract_stand_still
-  ...      critical
-  ${award_index}=  Отримати останній індекс  awards  ${tender_owner}  ${viewer}
-  ${standstillEnd}=  Get Variable Value  ${USERS.users['${viewer}'].tender_data.data.awards[${award_index}].complaintPeriod.endDate}
-  Дочекатись дати  ${standstillEnd}
 
 
 Відображення вартості угоди без урахування ПДВ
