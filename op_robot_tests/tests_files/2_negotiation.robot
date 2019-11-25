@@ -861,7 +861,7 @@ ${PLAN_TENDER}      ${True}
   ...  critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${tender_owner}
   [Teardown]  Оновити LAST_MODIFICATION_DATE
-  Дочекатись дати  ${USERS.users['${tender_owner}'].tender_data.data.awards[0].complaintPeriod.endDate}
+  Дочекатись дати  ${USERS.users['${viewer}'].tender_data.data.awards[0].complaintPeriod.endDate}
   Можливість укласти угоду для закупівлі
 
 
