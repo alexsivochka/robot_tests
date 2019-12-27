@@ -2199,7 +2199,7 @@ ${PLAN_TENDER}      ${True}
   ...      critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${tender_owner}
   [Teardown]  Оновити LAST_MODIFICATION_DATE
-  Можливість продовжити період подання пропозиції на 3 днів
+  Можливість продовжити період подання пропозиції на 5 днів
   Можливість відповісти на запитання на тендер
 
 
@@ -2625,6 +2625,26 @@ ${PLAN_TENDER}      ${True}
   ...      critical
   Отримати дані із поля procuringEntity.name тендера другого етапу для усіх користувачів
 
+
+Відображення початку періоду прийому пропозицій тендера другого етапу
+  [Tags]   ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера другого етапу
+  ...      viewer  tender_owner  provider  provider1
+  ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
+  ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
+  ...      compare_stages
+  ...      critical
+  Отримати дані із поля tenderPeriod.startDate тендера другого етапу для усіх користувачів
+
+
+Відображення закінчення періоду прийому пропозицій тендера другого етапу
+  [Tags]   ${USERS.users['${viewer}'].broker}: Відображення основних даних тендера другого етапу
+  ...      viewer  tender_owner  provider  provider1
+  ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
+  ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
+  ...      compare_stages
+  ...      critical
+  Отримати дані із поля tenderPeriod.endDate тендера другого етапу для усіх користувачів
+
 ###################################################################
 #           Відображення посилання на аукціон
 ###################################################################
@@ -2668,7 +2688,7 @@ ${PLAN_TENDER}      ${True}
   ...      viewer  tender_owner  provider  provider1
   ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
   ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      critical
   Звірити відображення поля title усіх лотів другого етапу для усіх користувачів
 
@@ -2677,7 +2697,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення лоту тендера другого етапу
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      non-critical
   Звірити відображення поля description усіх лотів другого етапу для користувача ${viewer}
 
@@ -2687,7 +2707,7 @@ ${PLAN_TENDER}      ${True}
   ...      viewer tender_owner  provider  provider1
   ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
   ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      critical
   Звірити відображення поля value.amount усіх лотів другого етапу для усіх користувачів
 
@@ -2696,7 +2716,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення лоту тендера другого етапу
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      critical
   Звірити відображення поля value.currency усіх лотів другого етапу для користувача ${viewer}
 
@@ -2705,7 +2725,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення лоту тендера другого етапу
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      non-critical
   Звірити відображення поля value.valueAddedTaxIncluded усіх лотів другого етапу для користувача ${viewer}
 
@@ -2715,7 +2735,7 @@ ${PLAN_TENDER}      ${True}
   ...      viewer tender_owner  provider  provider1
   ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
   ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      non-critical
   Звірити відображення поля minimalStep.amount усіх лотів другого етапу для усіх користувачів
 
@@ -2724,7 +2744,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення лоту тендера другого етапу
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      compare_stages
+  ...      compare_lots_tages
   ...      non-critical
   Звірити відображення поля minimalStep.currency усіх лотів другого етапу для користувача ${viewer}
 
@@ -2733,7 +2753,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення лоту тендера другого етапу
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      compare_stages
+  ...      compare_lots_stages
   ...      non-critical
   Звірити відображення поля minimalStep.valueAddedTaxIncluded усіх лотів другого етапу для користувача ${viewer}
 

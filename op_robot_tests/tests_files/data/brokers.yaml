@@ -261,14 +261,34 @@ PrivatMarket:
 Prom:
     intervals:
         default:
+            accelerator: 1440
             enquiry: [4, 4]
             tender:  [0,  30]
+        abovethresholdeu:
+            accelerator: 1440
+            tender:  [0, 50]
+        openeu:
+            accelerator: 1440
+            tender:  [0, 50]
+        openua:
+            accelerator: 1440
+            tender:  [0, 65]
+        belowThreshold:
+            accelerator: 1440
+            enquiry: [0, 75]
+            tender:  [0, 65]
+        negotiation:
+            accelerator: 360
+            enquiry: [0, 20]
+            tender:  [0, 20]
+        openua_defense:
+            tender:  [0, 110]
     keywords_file: prom
     roles:
         tender_owner:   Prom_Owner
         viewer:         Prom_Viewer
-        provider:       Prom_Provider1
-    timeout_on_wait: 10
+        provider:       Prom_Provider
+    timeout_on_wait: 300
 Publicbid:
     intervals:
         default:
@@ -301,20 +321,26 @@ SmartTender:
     intervals:
         default:
             enquiry: [0, 10]
+            tender:  [0, 30]
+        belowThreshold:
+            enquiry: [0, 25]
             tender:  [0, 20]
         openua:
             accelerator: 1440
-            tender:  [0, 15]
+            tender:  [30, 70]
         openeu:
-            tender:  [0, 30]
+            tender:  [30, 70]
             accelerator: 1440
+        framework_selection:
+            accelerator: 360
     keywords_file: smarttender
     roles:
         provider:       SmartTender_Provider1
         provider1:      SmartTender_Provider2
+        provider2:      SmartTender_Provider3
         tender_owner:   SmartTender_Owner
         viewer:         SmartTender_Viewer
-    timeout_on_wait: 300
+    timeout_on_wait: 0
 uatenders:
     intervals:
         default:
@@ -568,28 +594,28 @@ ukrtender:
 playtender:
     intervals:
         default:
-            enquiry: [0, 20]
-            tender:  [0, 20]
+            enquiry: [0, 25]
+            tender:  [0, 25]
             accelerator: 1440
         belowThreshold:
             enquiry: [0, 25]
             tender:  [0, 25]
             accelerator: 1440
         openua:
-            tender:  [0, 25]
+            tender:  [0, 30]
             accelerator: 1440
         openeu:
-            tender:  [0, 25]
+            tender:  [0, 35]
             accelerator: 1440
         open_competitive_dialogue:
+            tender:  [0, 40]
             accelerator: 1440
-            tender:  [0, 35]
         open_esco:
              enquiry: [0, 25]
-             tender:  [0, 25]
+             tender:  [0, 35]
              accelerator: 1440
         open_framework:
-             tender:  [0, 25]
+             tender:  [0, 40]
              accelerator: 1440
     keywords_file: playtender
     basepage: 'http://test.playtender.com.ua'

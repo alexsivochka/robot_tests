@@ -8,7 +8,7 @@ ${RESOURCE}     plans
 ${MODE}         belowThreshold
 @{USED_ROLES}   tender_owner  viewer
 
-${NUMBER_OF_ITEMS}  ${2}
+${NUMBER_OF_ITEMS}  ${1}
 ${TENDER_MEAT}      ${False}
 ${ITEM_MEAT}        ${False}
 ${MOZ_INTEGRATION}  ${False}
@@ -83,6 +83,8 @@ ${NUMBER_OF_BREAKDOWN}  ${2}
   ...      plan_view
   ...      critical
   [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
+  :FOR  ${username}  IN  ${viewer}  ${tender_owner}
+  \  Отримати дані із тендера  ${username}  ${TENDER['TENDER_UAID']}  budget.amount
   Звірити відображення поля budget.amount плану для користувача ${viewer}
 
 
@@ -180,7 +182,7 @@ ${NUMBER_OF_BREAKDOWN}  ${2}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення основних даних плану
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      plan_view
+  ...      plan_view_tender_startdate
   ...      critical
   Звірити відображення поля tender.tenderPeriod.startDate плану для користувача ${viewer}
 
