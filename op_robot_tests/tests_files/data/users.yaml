@@ -74,7 +74,7 @@ users:
         size:     [1400, 900]
     Etender_Owner:
         broker:   Etender
-        homepage: "https://uat-prozorro.e-tender.ua/#/"
+        homepage: "https://stage.e-tender.ua/"
         login:    auto_owner
         password: Qq123456
         browser:  chrome
@@ -82,7 +82,7 @@ users:
         size:     [1366, 800]
     Etender_Provider1:
         broker:   Etender
-        homepage: "https://uat-prozorro.e-tender.ua/#/"
+        homepage: "https://stage.e-tender.ua/"
         login:    auto_provider1
         password: Qq123456
         browser:  chrome
@@ -90,15 +90,23 @@ users:
         size:     [1366, 800]
     Etender_Provider2:
         broker:   Etender
-        homepage: "https://uat-prozorro.e-tender.ua/#/"
+        homepage: "https://stage.e-tender.ua/"
         login:    auto_provider2
+        password: Qq123456
+        browser:  chrome
+        position: [0, 0]
+        size:     [1366, 800]
+    Etender_Provider3:
+        broker:   Etender
+        homepage: "https://stage.e-tender.ua/"
+        login:    auto_provider3
         password: Qq123456
         browser:  chrome
         position: [0, 0]
         size:     [1366, 800]
     Etender_Viewer:
         broker:   Etender
-        homepage: "https://uat-prozorro.e-tender.ua/#/"
+        homepage: "https://stage.e-tender.ua/"
         browser:  chrome
         position: [0, 0]
         size:     [1366, 800]
@@ -334,6 +342,26 @@ users:
         default_page: "https://my.zakupki.company/cabinet/purchases/state_purchase/search/all"
         state_plan_page: "https://my.zakupki.company/cabinet/purchases/state_plan/list?mode=all_prozorro"
         login:    test@test3.com
+        password: 123456
+        browser:  chrome
+        position: [640, 0]
+        size:     [1920, 1080]
+    Prom_Provider1:
+        broker:   Prom
+        homepage: "https://zakupki.company"
+        default_page: "https://my.zakupki.company/cabinet/purchases/state_purchase/search/all"
+        state_plan_page: "https://my.zakupki.company/cabinet/purchases/state_plan/list?mode=all_prozorro"
+        login:    test@test4.com
+        password: 123456
+        browser:  chrome
+        position: [640, 0]
+        size:     [1920, 1080]
+    Prom_Provider2:
+        broker:   Prom
+        homepage: "https://zakupki.company"
+        default_page: "https://my.zakupki.company/cabinet/purchases/state_purchase/search/all"
+        state_plan_page: "https://my.zakupki.company/cabinet/purchases/state_plan/list?mode=all_prozorro"
+        login:    test@test5.com
         password: 123456
         browser:  chrome
         position: [640, 0]
@@ -761,6 +789,12 @@ users:
         browser:  chrome
         size:     [1280, 1024]
         login: "test1@izi.trade"
+        password: "qwerty1!"
+    izi_provider2:
+        broker:   izi
+        browser:  chrome
+        size:     [1280, 1024]
+        login: "test2@izi.trade"
         password: "qwerty1!"
     izi_viewer:
         broker:   izi

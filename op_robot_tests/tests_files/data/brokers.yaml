@@ -97,17 +97,20 @@ Etender:
             tender:  [0, 20]
             accelerator: 1440
         openua:
-            tender:  [1, 17]
+            tender:  [1, 35]
         openeu:
             tender:  [1, 35]
         openua_defense:
             tender:  [0, 38]
         open_competitive_dialogue:
             tender:  [0,  35]
+        open_framework:
+            tender:  [0, 35]
     keywords_file: etender
     roles:
         provider:       Etender_Provider1
         provider1:      Etender_Provider2
+        provider2:      Etender_Provider3
         tender_owner:   Etender_Owner
         viewer:         Etender_Viewer
     timeout_on_wait: 30
@@ -266,17 +269,17 @@ Prom:
             tender:  [0,  30]
         abovethresholdeu:
             accelerator: 1440
-            tender:  [0, 50]
+            tender:  [0, 20]
         openeu:
             accelerator: 1440
-            tender:  [0, 50]
+            tender:  [0, 20]
         openua:
             accelerator: 1440
-            tender:  [0, 65]
+            tender:  [0, 35]
         belowThreshold:
             accelerator: 1440
-            enquiry: [0, 75]
-            tender:  [0, 65]
+            enquiry: [0, 30]
+            tender:  [0, 30]
         negotiation:
             accelerator: 360
             enquiry: [0, 20]
@@ -285,9 +288,11 @@ Prom:
             tender:  [0, 110]
     keywords_file: prom
     roles:
-        tender_owner:   Prom_Owner
-        viewer:         Prom_Viewer
-        provider:       Prom_Provider
+        tender_owner:    Prom_Owner
+        viewer:          Prom_Viewer
+        provider:        Prom_Provider
+        provider1:       Prom_Provider1
+        provider2:       Prom_Provider2
     timeout_on_wait: 300
 Publicbid:
     intervals:
@@ -536,8 +541,8 @@ aladdin:
         viewer:         aladdin_Viewer
     timeout_on_wait: 1
 izi:
-    homepage: "https://test.izi.trade"
-    backendUrl: "https://api-test.izi.trade"
+    homepage: "https://prozorro:EUKAJxV5nZhVRKAL@uat.izi.trade"
+    backendUrl: "https://api-uat.izi.trade"
     intervals:
         default:
             enquiry: [0, 20]
@@ -563,8 +568,9 @@ izi:
     roles:
         provider:       izi_provider
         provider1:      izi_provider1
+        provider2:      izi_provider2
         viewer:         izi_viewer
-    timeout_on_wait: 0
+    timeout_on_wait: 1
 ukrtender:
     intervals:
         default:
