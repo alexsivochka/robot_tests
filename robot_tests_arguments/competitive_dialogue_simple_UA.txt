@@ -17,7 +17,6 @@
 -i tender_view_minimalStep
 -i tender_view_deliveryDate
 -i tender_view_quantity
--i tender_view_coordinates
 -i lot_view
 -i lot_view_value
 -i lot_view_minimalStep
@@ -61,6 +60,7 @@
 
 -i contract_stand_still
 -i contract_view
+-i contract_view_dateSigned
 -i modify_contract_amount_net
 -i modify_contract_value
 -i modify_contract

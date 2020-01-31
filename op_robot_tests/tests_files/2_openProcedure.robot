@@ -853,7 +853,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення нецінових показників
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      meat_view  level2
+  ...      featureOf_meat_view  level2
   ...      non-critical
   Звірити відображення поля featureOf усіх нецінових показників для користувача ${viewer}
 
@@ -926,7 +926,7 @@ ${PLAN_TENDER}      ${True}
   ...      viewer  tender_owner  provider  provider1
   ...      ${USERS.users['${viewer}'].broker}  ${USERS.users['${tender_owner}'].broker}
   ...      ${USERS.users['${provider}'].broker}  ${USERS.users['${provider1}'].broker}
-  ...      funders_view
+  ...      funders_url_view
   ...      non-critical
   Звірити відображення поля contactPoint.url усіх донорів для усіх користувачів
 
@@ -1233,7 +1233,7 @@ ${PLAN_TENDER}      ${True}
   [Tags]   ${USERS.users['${viewer}'].broker}: Відображення нецінових показників
   ...      viewer
   ...      ${USERS.users['${viewer}'].broker}
-  ...      add_tender_meat
+  ...      featureOf_meat_view
   ...      non-critical
   Звірити відображення поля featureOf у новоствореному неціновому показнику для користувача ${viewer}
 
@@ -2655,7 +2655,8 @@ ${PLAN_TENDER}      ${True}
   ...      ${USERS.users['${viewer}'].broker}
   ...      auction_url
   ...      critical
-  [Setup]  Дочекатись дати початку періоду аукціону  ${viewer}  ${TENDER['TENDER_UAID']}
+  Дочекатись дати закінчення прийому пропозицій  ${viewer}  ${TENDER['TENDER_UAID']}
+  Дочекатись дати початку періоду аукціону  ${viewer}  ${TENDER['TENDER_UAID']}
   Можливість отримати посилання на аукціон для глядача
 
 
